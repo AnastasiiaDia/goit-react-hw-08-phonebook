@@ -1,6 +1,6 @@
 import { Button } from 'components/Form/FormElements.styled';
 import { Li } from './Contact.styled';
-import { useDeleteContactMutation } from 'redux/contactSlice';
+import { useDeleteContactMutation } from 'redux/contactsReducer';
 import { toast } from 'react-toastify';
 import { successSettings } from 'utilits/toastifySettings';
 

@@ -1,57 +1,30 @@
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Form } from './components/Form/Form';
-import { ContactList } from './components/ContactList/ContactList';
-import { Container } from './components/Container.styled';
-import { Input, Section } from './components/Form/FormElements.styled';
+import Layout from 'Layout';
+import { lazy, useEffect, useRef } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { setAuthHeader, useRefreshQuery } from 'redux/authReducer';
 
-import { useGetContactsQuery } from 'redux/contactSlice';
-import { useState } from 'react';
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const BookPage = lazy(() => import('./pages/BookPage'));
 
 export function App() {
-  const { data } = useGetContactsQuery();
+  const token = useRef(localStorage.getItem('token'));
+  setAuthHeader(token.current);
+  const { data } = useRefreshQuery();
+  console.log(data);
+  // useEffect(() => {
 
-  const [filter, setFilter] = useState('');
+  //   refresh();
+  // }, [refresh]);
 
-  const onChangeImputFilter = event => {
-    setFilter(event.target.value.trim());
-  };
-
-  let filteredContacts = [];
-  if (data) {
-    filteredContacts = data.filter(contact => {
-      return contact.name.toLowerCase().includes(filter.toLowerCase());
-    });
-  }
   return (
-    <>
-      <ToastContainer />
-      <Container>
-        <Form />
-        <h2>Contacts</h2>
-
-        {data === null ? (
-          <p>No contacts</p>
-        ) : (
-          <Section>
-            {/* console.log(data); */}
-            {data?.length > 0 ? (
-              <div>
-                <p>Find conacts by name</p>
-                <Input
-                  type="text"
-                  placeholder="Search contact"
-                  value={filter}
-                  onChange={onChangeImputFilter}
-                />
-              </div>
-            ) : (
-              <p>No contacts</p>
-            )}
-            <ContactList contacts={filteredContacts} />
-          </Section>
-        )}
-      </Container>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/contacts" element={<BookPage />} />
+      </Route>
+      <Route path="/*" element={<Layout />} />
+    </Routes>
   );
 }

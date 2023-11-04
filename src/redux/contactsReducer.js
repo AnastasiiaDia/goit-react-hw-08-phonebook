@@ -1,20 +1,22 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { axiosBaseQuery } from './authReducer';
 
-export const api = createApi({
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://653544abc620ba9358ec537c.mockapi.io',
+export const contactsApi = createApi({
+  baseQuery: axiosBaseQuery({
+    baseUrl: '/',
   }),
+  reducerPath: `contacts`,
   tagTypes: ['Contacts'],
   endpoints: build => ({
     getContacts: build.query({
-      query: () => '/contacts',
+      query: () => ({ url: '/contacts', method: 'GET' }),
       providesTags: ['Contacts'],
     }),
     addContact: build.mutation({
       query: body => ({
         url: '/contacts',
         method: 'POST',
-        body,
+        data: body,
       }),
       invalidatesTags: ['Contacts'],
     }),
@@ -32,5 +34,5 @@ export const {
   useGetContactsQuery,
   useAddContactMutation,
   useDeleteContactMutation,
-} = api;
-console.log(api);
+} = contactsApi;
+// console.log(api);
