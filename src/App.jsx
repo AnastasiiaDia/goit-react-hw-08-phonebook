@@ -1,5 +1,5 @@
 import Layout from 'Layout';
-import { lazy, useEffect, useRef } from 'react';
+import { lazy, useRef } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { setAuthHeader, useRefreshQuery } from 'redux/authReducer';
 
