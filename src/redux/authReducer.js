@@ -6,7 +6,6 @@ export const instance = axios.create({});
 export const setAuthHeader = (token = '') => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
-console.log(instance.defaults.headers);
 
 export const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
@@ -22,7 +21,7 @@ export const axiosBaseQuery =
         headers,
       });
       setAuthHeader(result.data?.token);
-      console.log(result.data);
+
       if (result.data?.token) localStorage.setItem('token', result.data?.token);
 
       return { data: result.data };
@@ -65,7 +64,7 @@ export const authApi = createApi({
     };
   },
 });
-console.log(authApi);
+
 export const {
   useLoginMutation,
   useRegisterMutation,

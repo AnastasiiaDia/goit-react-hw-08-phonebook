@@ -1,12 +1,17 @@
 import React from 'react';
-import { useLogoutMutation } from 'redux/authReducer';
+import { useLogoutMutation, useRefreshQuery } from 'redux/authReducer';
 
 const UserMenu = () => {
   const [logOut] = useLogoutMutation();
+  const { data } = useRefreshQuery();
+  const exit = () => {
+    localStorage.removeItem('token');
+    logOut();
+  };
   return (
     <>
-      <p>Hello userName</p>
-      <button type="button" onClick={() => logOut()}>
+      <p>Hello {data.name}</p>
+      <button type="button" onClick={() => exit()}>
         Logout
       </button>
     </>

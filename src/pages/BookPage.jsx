@@ -8,6 +8,7 @@ import {
 import { successSettings } from 'utilits/toastifySettings';
 import { useRef } from 'react';
 import { setAuthHeader } from 'redux/authReducer';
+import { ContactList } from 'components/ContactList/ContactList';
 
 function BookPage() {
   const token = useRef(localStorage.getItem('token'));
@@ -45,42 +46,8 @@ function BookPage() {
         <Input type="tel" name="number" required placeholder="123-45-67" />
         <Button type="submit">Add contact</Button>
       </FormEl>
+      <ContactList />
     </>
   );
 }
 export default BookPage;
-
-/* <h2>Contacts</h2>
-
-        {data === null ? (
-          <p>No contacts</p>
-        ) : (
-          <Section>
-            {data?.length > 0 ? (
-              <div>
-                <p>Find conacts by name</p>
-                <Input
-                  type="text"
-                  placeholder="Search contact"
-                  value={filter}
-                  onChange={onChangeImputFilter}
-                />
-              </div>
-            ) : (
-              <p>No contacts</p>
-            )}
-            <ContactList contacts={filteredContacts} /> */
-
-// const { data } = useGetContactsQuery();
-
-// const [filter, setFilter] = useState('');
-
-// const onChangeImputFilter = event => {
-//   setFilter(event.target.value.trim());
-// };
-
-// let filteredContacts = [];
-// if (data) {
-//   filteredContacts = data.filter(contact => {
-//     return contact.name.toLowerCase().includes(filter.toLowerCase());
-//   });
