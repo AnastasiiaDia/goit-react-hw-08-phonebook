@@ -9,6 +9,7 @@ import { successSettings } from 'utilits/toastifySettings';
 import { useRef } from 'react';
 import { setAuthHeader } from 'redux/authReducer';
 import { ContactList } from 'components/ContactList/ContactList';
+import { Container } from 'components/Container.styled';
 
 function BookPage() {
   const token = useRef(localStorage.getItem('token'));
@@ -37,7 +38,7 @@ function BookPage() {
   };
 
   return (
-    <>
+    <Container>
       <h1>Phonebook</h1>
       <FormEl onSubmit={onFormSubmit}>
         <span>Name</span>
@@ -47,7 +48,7 @@ function BookPage() {
         <Button type="submit">Add contact</Button>
       </FormEl>
       <ContactList />
-    </>
+    </Container>
   );
 }
 export default BookPage;

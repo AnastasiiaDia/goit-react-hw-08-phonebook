@@ -7,6 +7,10 @@ export const setAuthHeader = (token = '') => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
+export const deleteTokenFromHeader = () => {
+  instance.defaults.headers.common.Authorization = `Bearer`;
+};
+
 export const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data, params, headers }) => {
@@ -20,9 +24,13 @@ export const axiosBaseQuery =
         params,
         headers,
       });
-      setAuthHeader(result.data?.token);
 
-      if (result.data?.token) localStorage.setItem('token', result.data?.token);
+      if (result.data.token) {
+        localStorage.setItem('token', result.data.token);
+        setAuthHeader(result.data.token);
+      } else {
+        setAuthHeader(localStorage.getItem('token'));
+      }
 
       return { data: result.data };
     } catch (axiosError) {

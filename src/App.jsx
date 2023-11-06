@@ -4,17 +4,6 @@ import PublicRoute from 'components/routes/PublicRoute';
 import { lazy, useRef } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { setAuthHeader, useRefreshQuery } from 'redux/authReducer';
-import { useGetContactsQuery } from 'redux/contactsReducer';
-// import { ChakraProvider, extendBaseTheme } from '@chakra-ui/react';
-// import chakraTheme from '@chakra-ui/theme';
-
-// const { Button } = chakraTheme.components;
-
-// const theme = extendBaseTheme({
-//   components: {
-//     Button,
-//   },
-// });
 
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -25,7 +14,6 @@ export function App() {
   setAuthHeader(token.current);
   useRefreshQuery();
 
-  // const { data } = useGetContactsQuery();
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

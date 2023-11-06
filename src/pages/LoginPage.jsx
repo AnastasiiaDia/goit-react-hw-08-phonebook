@@ -1,3 +1,10 @@
+import {
+  ButtonLogin,
+  FormEl,
+  Input,
+  LabelEl,
+  SpanEl,
+} from 'components/Form/FormElements.styled';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
@@ -20,23 +27,23 @@ const LoginPage = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          <span>Email:</span>
-          <input {...register('email', { required: true })} type="email" />
+      <FormEl onSubmit={handleSubmit(onSubmit)}>
+        <LabelEl>
+          <SpanEl>Email:</SpanEl>
+          <Input {...register('email', { required: true })} type="email" />
           {errors.email && <span>This field is required</span>}
-        </label>
-        <label>
-          <span>Password:</span>
-          <input
+        </LabelEl>
+        <LabelEl>
+          <SpanEl>Password:</SpanEl>
+          <Input
             {...register('password', { required: true, minLength: 7 })}
             type="password"
           />
           {errors.password && <span>This field is required</span>}
-        </label>
+        </LabelEl>
 
-        <button type="submit">Login</button>
-      </form>
+        <ButtonLogin type="submit">Login</ButtonLogin>
+      </FormEl>
       {isSuccess && <Navigate to="/bookpage" />}
     </>
   );

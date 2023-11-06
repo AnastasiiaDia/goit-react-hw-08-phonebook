@@ -35,4 +35,3 @@ export const {
   useAddContactMutation,
   useDeleteContactMutation,
 } = contactsApi;
-// console.log(api);
