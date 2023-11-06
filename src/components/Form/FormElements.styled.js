@@ -2,15 +2,19 @@ import styled from '@emotion/styled';
 
 const Header = styled.header`
   background-color: white;
+  width: 360px;
+  margin: auto;
+  border: 2px solid orange;
 `;
 const Nav = styled.nav`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+
+  align-items: baseline;
   margin: auto;
   gap: 10px;
-  width: 360px;
+  padding: 7px;
 `;
 const FormEl = styled.form`
   display: flex;
@@ -31,10 +35,10 @@ const Section = styled.section`
   justify-content: center;
 `;
 
-const SpanHello = styled.section`
+const SpanHello = styled.span`
   display: flex;
-  align-items: center;
-  justify-content: center;
+
+  justify-content: space-between;
 `;
 
 const Input = styled.input`
@@ -100,10 +104,14 @@ const ButtonLogin = styled.button`
 `;
 
 const ButtonLogout = styled.button`
-  padding: 7px;
+  display: block;
   background-color: transparent;
   border: none;
   font-weight: bold;
+  line-height: 18.4px;
+  font-family: -apple-system, BlinkMacSystemFont;
+
+  font-size: 16px;
 
   &: hover {
     color: orange;
